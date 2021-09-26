@@ -7,13 +7,18 @@ export default function IngresarJugador() {
 
     /* el estado que enviara al backend el dato del usuario */
     const [nombre, setNombre] = useState('')
+    const [contador, setContador] = useState(1)
+    const [puntaje, setPuntaje] = useState(0)
 
-    /* se crea el usuario con el puntaje inicial en o */
+       /* Permanencia de datos a travez  del sessionStorage */
     const guardarUsuario = async (e) => {
         sessionStorage.setItem(
             "nombre",
             nombre
-        ); /* llevo el nombre al secion estorange que se hace publica en cualquier momento para ser usada */
+        );
+        
+       
+
         e.preventDefault();
         const UsuarioNuevo = {
             nombre, puntaje: 0
