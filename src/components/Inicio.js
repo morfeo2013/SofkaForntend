@@ -1,5 +1,7 @@
 import React from 'react'
 
+/*  Explicacion del juego */
+
 export default function Inicio() {
     return (
         <div>

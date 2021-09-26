@@ -18,10 +18,10 @@ return(
           <Link class="nav-link active" aria-current="page" to="/">Inicio</Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link" to="/jugar">Jugar</Link>
+          <Link class="nav-link" to="/usuarionuevo">Jugar</Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/puntajes">Puntajes</a>
+          <Link class="nav-link" to="/puntajes">Puntajes</Link>
         </li>
       
       </ul>
