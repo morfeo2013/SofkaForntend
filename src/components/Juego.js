@@ -7,6 +7,7 @@ export default function Juego() {
     const {setContador} = useContext(TemaContext)
     const {contador} = useContext(TemaContext)
     const {setPuntaje} = useContext(TemaContext)
+    const {puntaje} = useContext(TemaContext)
 
 
     
@@ -19,8 +20,13 @@ export default function Juego() {
     const [pregunta,setPegunta]=useState('')
     const [verdadera,setVerdadera]=useState('')
     const [respuestaJugador,setRespuestaJugador]=useState('')
+/*     const [respuesta1,setRespuesta1]=useState([])
+    const [respuesta2,setRespuesta2]=useState('')
+    const [respuesta3,setRespuesta3]=useState('')
+    const [respuesta4,setRespuesta4]=useState('') */
 
     useEffect(()=>{
+        
         Cuestionario()
     },[])
 
@@ -28,16 +34,26 @@ export default function Juego() {
     const Cuestionario=async()=>{
 
      if (contador===1){
+       
+      
         const respuesta=await Axios.get('http://localhost:4000/NivelCanario')      
         setDatos(respuesta.data)
         setPegunta(respuesta.data.pregunta)
         setArrays(respuesta.data.arr)
         setVerdadera(respuesta.data.verdadera)
+
+  
+
+      
+
+
        /* const {opc1,opc2,opc3,opc4} */
        Object.assign({}, arrays)
 
      }else if(contador===2)
-     {const respuesta=await Axios.get('http://localhost:4000/Nivelpaloma')      
+    
+     {const respuesta=await Axios.get('http://localhost:4000/Nivelpaloma') 
+     setPuntaje(puntaje+100)     
      setDatos(respuesta.data)
      setPegunta(respuesta.data.pregunta)
      setArrays(respuesta.data.arr)
@@ -46,7 +62,8 @@ export default function Juego() {
     Object.assign({}, arrays)} 
      
     else if(contador===3)
-    {const respuesta=await Axios.get('http://localhost:4000/Nivelgaviota')      
+    {const respuesta=await Axios.get('http://localhost:4000/Nivelgaviota')   
+    setPuntaje(puntaje+100)   
     setDatos(respuesta.data)
     setPegunta(respuesta.data.pregunta)
     setArrays(respuesta.data.arr)
@@ -55,7 +72,8 @@ export default function Juego() {
    Object.assign({}, arrays)} 
 
    else if(contador===4)
-   {const respuesta=await Axios.get('http://localhost:4000/Nivelcondor')      
+   {const respuesta=await Axios.get('http://localhost:4000/Nivelcondor')   
+   setPuntaje(puntaje+100)   
    setDatos(respuesta.data)
    setPegunta(respuesta.data.pregunta)
    setArrays(respuesta.data.arr)
@@ -64,7 +82,8 @@ export default function Juego() {
   Object.assign({}, arrays)} 
 
   else if(contador===5)
-  {const respuesta=await Axios.get('http://localhost:4000/Nivelaguila')      
+  {const respuesta=await Axios.get('http://localhost:4000/Nivelaguila')
+  setPuntaje(puntaje+100)      
   setDatos(respuesta.data)
   setPegunta(respuesta.data.pregunta)
   setArrays(respuesta.data.arr)
@@ -78,44 +97,19 @@ export default function Juego() {
   console.log(pregunta+verdadera,( Object.assign({}, arrays)))
 
 
-  const EnviarRespuesta = async (e) => {
+  const EnviarRespuesta = async (evaluar) => {
+   
 
-
-  const nombre= sessionStorage.setItem( "nombre");
-
-    e.preventDefault();
-    const UsuarioNuevo = {
-        nombre,respuesta
-
-    }
-    const respuesta = await Axios.post('http://localhost:4000/jugador', UsuarioNuevo)
-
-    /* recive el mensaje desde el backen para evaluar si ya existe */
-    const mensage = respuesta.data.mensage
-
-
-    /* si e mensaje exite vuelve a la pagina de inicio */
-    if (mensage === 'fallaste') {
-
-        salir()
-
-        /* Si es un jugador nuevo ingresa al juego */
-    } else {
-       
-        window.location.href = '/jugar'
-    }
+  if(evaluar===respuestaJugador){
+   
+   
+/* aca se coloca la logica para cambiar por medio del usecotext la opcion para pasar de nivel */
 
 
 
+  }
+  else{/* salir() */}
 
-    /*  Swal.fire({          
-         icon: 'success',
-         title: mensaje,
-         showConfirmButton: false,            
-       })
-       setTimeout(()=>{
-         window.location.href='/'
-       },1300) */
 
 }
 
@@ -147,14 +141,41 @@ export default function Juego() {
             <h2 className="text-color-danger"> {pregunta}</h2>
             </div>
             
-            <form onSubmit={EnviarRespuesta}>
+            <form /* onSubmit={EnviarRespuesta} */>
             
             <div className="contaainer text-center">
-            <button type="button" class="m-5 btn btn-primary"> {arrays[0]}</button>
-            <button type="button" class="m-5 btn btn-success"> {arrays[1]}</button>
-            <button type="button" class="m-5 btn btn-danger"> {arrays[2]}</button>
-            <button type="button" class="m-5 btn btn-warning"> {arrays[3]}</button>
-            
+            <button className="btn btn-primary" type=""  key="1"
+                  onClick={
+                    EnviarRespuesta()}
+                  
+                  >
+                    {arrays[0]}
+                  </button>
+
+                  <button className="btn btn-primary" type="" key="2"
+                /*   onClick={() =>
+                    EnviarRespuesta(respuesta1)} */
+                  
+                  >
+                    {arrays[1]}
+                  </button>
+
+                  <button className="btn btn-primary" type="" key="2"
+                /*   onClick={() =>
+                    EnviarRespuesta(respuesta1)} */
+                  
+                  >
+                    {arrays[2]}
+                  </button>
+
+                  <button className="btn btn-primary" type="" key="2"
+                /*   onClick={() =>
+                    EnviarRespuesta(respuesta1)} */
+                  
+                  >
+                    {arrays[3]}
+                  </button>
+
 
             </div>
             
