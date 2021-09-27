@@ -30,7 +30,7 @@ export default function Juego() {
     useEffect(()=>{
    
      setContador(1)
-     setPuntaje(100)
+     setPuntaje(0)
     
   },[])
 
@@ -118,7 +118,14 @@ export default function Juego() {
   /*  alert(array[posicion]) */
   alert('entrada inicial     '+array[posicion]+verdadera)
   if((verdadera===array[posicion])){
+
+    
     await  setContador(contador+1)
+
+    if(contador===5){
+      setPuntaje(puntaje+100)
+      alert('felicidades ganaste el Reto')
+    }
 alert('son repetidos'+contador)
 
 
@@ -126,6 +133,7 @@ alert('son repetidos'+contador)
 alert(puntaje)
    
   }
+
      
 
 
@@ -196,7 +204,9 @@ alert(puntaje)
 
 
             </div>
-            
+            <div className="container text-center">
+            <h1>Acumulado Total #{puntaje}</h1>
+            </div>
            
 
              <div className="container text-center">
