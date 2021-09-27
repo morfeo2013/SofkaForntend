@@ -6,8 +6,8 @@ export const TemaContext = React.createContext()
 function Usecontext(props) {
 
     /* se crea los estados a ser compartidos  por los componentes */
-    const [contador, setContador]= useState(1)
-    const [puntaje, setPuntaje]= useState(0)
+    const [contador, setContador]= useState()
+    const [puntaje, setPuntaje]= useState()
 
  
     

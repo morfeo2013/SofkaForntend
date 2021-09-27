@@ -5,6 +5,7 @@ export default function Juego() {
     
     /* Permanencia de datos a travez  de la propiedad de React useContext */
     const {setContador} = useContext(TemaContext)
+   
     const {contador} = useContext(TemaContext)
     const {setPuntaje} = useContext(TemaContext)
     const {puntaje} = useContext(TemaContext)
@@ -20,19 +21,27 @@ export default function Juego() {
     const [pregunta,setPegunta]=useState('')
     const [verdadera,setVerdadera]=useState('')
     const [respuestaJugador,setRespuestaJugador]=useState('')
-/*     const [respuesta1,setRespuesta1]=useState([])
+    const [respuesta1,setRespuesta1]=useState('')
     const [respuesta2,setRespuesta2]=useState('')
     const [respuesta3,setRespuesta3]=useState('')
-    const [respuesta4,setRespuesta4]=useState('') */
+    const [respuesta4,setRespuesta4]=useState('')
+
+  
+    useEffect(()=>{
+   
+     setContador(1)
+     setPuntaje(100)
+    
+  },[])
 
     useEffect(()=>{
-        
+     
         Cuestionario()
-    },[])
+    },[contador])
 
 
-    const Cuestionario=async()=>{
-
+    const Cuestionario=async(c)=>{
+     
      if (contador===1){
        
       
@@ -42,17 +51,18 @@ export default function Juego() {
         setArrays(respuesta.data.arr)
         setVerdadera(respuesta.data.verdadera)
 
-  
+        
 
       
 
 
        /* const {opc1,opc2,opc3,opc4} */
-       Object.assign({}, arrays)
+   
 
      }else if(contador===2)
-    
+   
      {const respuesta=await Axios.get('http://localhost:4000/Nivelpaloma') 
+     alert('paloma')
      setPuntaje(puntaje+100)     
      setDatos(respuesta.data)
      setPegunta(respuesta.data.pregunta)
@@ -89,26 +99,34 @@ export default function Juego() {
   setArrays(respuesta.data.arr)
   setVerdadera(respuesta.data.verdadera)
  /* const {opc1,opc2,opc3,opc4} */
- Object.assign({}, arrays)} 
+ Object.assign({}, arrays)}
+
 
 
 
     }
-  console.log(pregunta+verdadera,( Object.assign({}, arrays)))
-
-
-  const EnviarRespuesta = async (evaluar) => {
    
 
-  if(evaluar===respuestaJugador){
+    var [rojo, verde, azul,amarillo] = arrays 
+  
+  console.log(pregunta+verdadera,arrays,verde)
+
+/*   const EnviarRespuesta = async (array,posicion,cont) => {} */
+
+
+  const EnviarRespuesta = async (array,posicion) => {
+  /*  alert(array[posicion]) */
+  alert('entrada inicial     '+array[posicion]+verdadera)
+  if((verdadera===array[posicion])){
+    await  setContador(contador+1)
+alert('son repetidos'+contador)
+
+
+
+alert(puntaje)
    
-   
-/* aca se coloca la logica para cambiar por medio del usecotext la opcion para pasar de nivel */
-
-
-
   }
-  else{/* salir() */}
+     
 
 
 }
@@ -137,40 +155,40 @@ export default function Juego() {
         <div>
             
             <div className="container text-center">
-            <h1>Pregunta:</h1>
+            <h1>Ronda de Preguntas #{contador}</h1>
             <h2 className="text-color-danger"> {pregunta}</h2>
             </div>
             
-            <form /* onSubmit={EnviarRespuesta} */>
+            < >
             
             <div className="contaainer text-center">
             <button className="btn btn-primary" type=""  key="1"
                   onClick={
-                    EnviarRespuesta()}
+                   ()=> EnviarRespuesta(arrays,0)}
                   
                   >
                     {arrays[0]}
                   </button>
 
                   <button className="btn btn-primary" type="" key="2"
-                /*   onClick={() =>
-                    EnviarRespuesta(respuesta1)} */
+                  onClick={() =>
+                    EnviarRespuesta(arrays,1)}
                   
                   >
                     {arrays[1]}
                   </button>
 
                   <button className="btn btn-primary" type="" key="2"
-                /*   onClick={() =>
-                    EnviarRespuesta(respuesta1)} */
+                  onClick={() =>
+                    EnviarRespuesta(arrays,2)}
                   
                   >
                     {arrays[2]}
                   </button>
 
                   <button className="btn btn-primary" type="" key="2"
-                /*   onClick={() =>
-                    EnviarRespuesta(respuesta1)} */
+                  onClick={() =>
+                    EnviarRespuesta(arrays,3)}
                   
                   >
                     {arrays[3]}
@@ -185,7 +203,7 @@ export default function Juego() {
              <button type="button" class="m-5 btn btn-info" onClick={() => salir()}>Salir</button>
              </div>
            
-             </form>
+             </>
 
         </div>
     )
