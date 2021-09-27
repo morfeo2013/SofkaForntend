@@ -62,7 +62,7 @@ export default function Juego() {
      }else if(contador===2)
    
      {const respuesta=await Axios.get('http://localhost:4000/Nivelpaloma') 
-     alert('paloma')
+     /* alert('paloma') */
      setPuntaje(puntaje+100)     
      setDatos(respuesta.data)
      setPegunta(respuesta.data.pregunta)
@@ -107,16 +107,14 @@ export default function Juego() {
     }
    
 
-    var [rojo, verde, azul,amarillo] = arrays 
-  
-  console.log(pregunta+verdadera,arrays,verde)
+
 
 /*   const EnviarRespuesta = async (array,posicion,cont) => {} */
 
 
   const EnviarRespuesta = async (array,posicion) => {
   /*  alert(array[posicion]) */
-  alert('entrada inicial     '+array[posicion]+verdadera)
+ /*  alert('entrada inicial     '+array[posicion]+verdadera) */
   if((verdadera===array[posicion])){
 
     
@@ -126,11 +124,11 @@ export default function Juego() {
       setPuntaje(puntaje+100)
       alert('felicidades ganaste el Reto')
     }
-alert('son repetidos'+contador)
+/* alert('son repetidos'+contador) */
 
 
 
-alert(puntaje)
+/* alert(puntaje) */
    
   }
 
@@ -163,6 +161,7 @@ alert(puntaje)
         <div>
             
             <div className="container text-center">
+            <h1>Bienvenido(a) {nombreJugador}</h1>
             <h1>Ronda de Preguntas #{contador}</h1>
             <h2 className="text-color-danger"> {pregunta}</h2>
             </div>
