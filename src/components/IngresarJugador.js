@@ -24,24 +24,17 @@ export default function IngresarJugador() {
             nombre, puntaje: 0
 
         }
-        const respuesta = await Axios.post('http://localhost:4000/jugador', UsuarioNuevo)
+       
 
         /* recive el mensaje desde el backen para evaluar si ya existe */
-        const mensage = respuesta.data.mensage
+        const mensage = ''
 
 
-        /* si e mensaje exite vuelve a la pagina de inicio */
-        if (mensage === 'Lo sentimos, pero solo puedes participar una sola vez') {
-
-            window.location.href = '/'
-
-            /* Si es un jugador nuevo ingresa al juego */
-        } else {
            
             window.location.href = '/jugar'
-        }
+        
 
-
+    
 
 
         /*  Swal.fire({          

@@ -99,9 +99,14 @@ export default function Juego() {
   setArrays(respuesta.data.arr)
   setVerdadera(respuesta.data.verdadera)
  /* const {opc1,opc2,opc3,opc4} */
- Object.assign({}, arrays)}
+ Object.assign({}, arrays)
+ 
+ 
+   
 
+}
 
+ 
 
 
     }
@@ -120,16 +125,19 @@ export default function Juego() {
     
     await  setContador(contador+1)
 
-    if(contador===5){
-      setPuntaje(puntaje+100)
-      alert('felicidades ganaste el Reto')
-    }
+   
 /* alert('son repetidos'+contador) */
 
 
 
 /* alert(puntaje) */
    
+  }
+  if(contador===5 && (verdadera===array[posicion])){
+    
+    /* alert('felicidades ganaste el Reto') */
+   salir()
+    
   }
 
      
@@ -140,16 +148,25 @@ export default function Juego() {
 
 
 
-
 /* salimos y borramos el nombre del usuario */
-    const salir = () => {
+    const salir =async () => {
 
-      
+
+      const UsuarioNuevo = {
+            nombre:nombreJugador, puntaje: puntaje
+
+        }
+      const respuesta = await Axios.post('http://localhost:4000/jugador', UsuarioNuevo)
+
+        /* recive el mensaje desde el backen para evaluar si ya existe */
+        const mensage = respuesta.data.mensage
+
 
 
 
 
         sessionStorage.clear();
+        
         window.location.href = '/'
       };
       
