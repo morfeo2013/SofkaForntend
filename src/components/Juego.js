@@ -127,7 +127,7 @@ export default function Juego() {
 
     if(contador===5){
     
-      /* alert('felicidades ganaste el Reto') */
+      alert('felicidades ganaste el Reto')
      salir()
       
     }
