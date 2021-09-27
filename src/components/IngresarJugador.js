@@ -26,8 +26,8 @@ export default function IngresarJugador() {
         }
        
 
-        /* recive el mensaje desde el backen para evaluar si ya existe */
-        const mensage = ''
+     
+       
 
 
            
@@ -35,16 +35,6 @@ export default function IngresarJugador() {
         
 
     
-
-
-        /*  Swal.fire({          
-             icon: 'success',
-             title: mensaje,
-             showConfirmButton: false,            
-           })
-           setTimeout(()=>{
-             window.location.href='/'
-           },1300) */
 
     }
 

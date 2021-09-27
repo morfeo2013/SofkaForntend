@@ -125,20 +125,19 @@ export default function Juego() {
     
     await  setContador(contador+1)
 
-   
+    if(contador===5){
+    
+      /* alert('felicidades ganaste el Reto') */
+     salir()
+      
+    }
 /* alert('son repetidos'+contador) */
 
 
 
 /* alert(puntaje) */
    
-  }
-  if(contador===5 && (verdadera===array[posicion])){
-    
-    /* alert('felicidades ganaste el Reto') */
-   salir()
-    
-  }
+  }else{salir()}
 
      
 
